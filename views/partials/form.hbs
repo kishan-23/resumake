@@ -1,0 +1,114 @@
+<div class="container d-flex flex-column justify-content-center align-items-center mt-3">
+    <h3>Enter your details</h3>
+    <form id="detailsForm">
+        <div class="border border-2 rounded p-2 bg-dark d-flex flex-column justify-content-center align-items-center">
+            <div class="row row-cols-md-2">
+                <div class="formBlock col">
+                    <h4>Personal Details</h4>
+                    <div class="mb-3">
+                        <label for="nameInput" class="form-label">Your Name</label>
+                        <input type="text" class="form-control" id="nameInput" name="uname" value="some">
+                    </div>
+                    <div class="mb-3">
+                        <label for="placeInput" class="form-label">Native Place</label>
+                        <input type="text" class="form-control" id="placeInput" name="uplace">
+                    </div>
+                    <div class="mb-3">
+                        <label for="dobInput" class="form-label">Your Date of Birth</label>
+                        <input type="date" class="form-control" id="dobInput" name="udob">
+                    </div>
+                </div>
+
+                <div class="formBlock col">
+                    <h4>Contact Details</h4>
+                    <div class="mb-3">
+                        <label for="phoneInput" class="form-label">Your Phone no.</label>
+                        <input type="text" class="form-control" id="phoneInput" name="uphone">
+                    </div>
+                    <div class="mb-3">
+                        <label for="emailInput" class="form-label">Your Email</label>
+                        <input type="email" class="form-control" id="emailInput" name="umail">
+                    </div>
+                    <div class="mb-3">
+                        <label for="linkedinInput" class="form-label">Linkedin</label>
+                        <input type="text" class="form-control" id="linkedinInput" name="ulinkedin">
+                    </div>
+                    <button class="btn btn-success btn-sm" id="addPortfolioBtn">Add Github/Portfolio</button>
+                </div>
+
+                <div class="formBlock col">
+                    <h4>Education Details</h4>
+                    <div class="educationBlock">
+                        <div class="mb-3">
+                            <label for="collegeInput" class="form-label">College/School</label>
+                            <input type="text" class="form-control" id="collegeInput" name="ucollege">
+                        </div>
+                        <div class="mb-3">
+                            <label for="degreeInput" class="form-label">Degree/Course</label>
+                            <input type="text" class="form-control" id="degreeInput" name="udegree">
+                        </div>
+                        <div class="mb-3">
+                            <label for="majorInput" class="form-label">Subject/Major</label>
+                            <input type="text" class="form-control" id="majorInput" name="umajor">
+                        </div>
+                        <div class="mb-3">
+                            <label for="scoreInput" class="form-label">Score/Achievement</label>
+                            <input type="text" class="form-control" id="scoreInput" name="uscore">
+                        </div>
+                        <div class="mb-3">
+                            <div class="input-group">
+                                <span class="input-group-text">From Year</span>
+                                <input type="month" class="form-control" id="startMonthInput" name="ueduStart">
+                                <span class="input-group-text">To Year</span>
+                                <input type="month" class="form-control" id="endMonthInput" name="ueduEnd">
+                            </div>
+                        </div>
+                    </div>
+
+                    <button class="btn btn-success btn-sm" id="addEducationBtn">Add Education</button>
+                </div>
+
+                <div class="formBlock col">
+                    <h4>Skills</h4>
+                    <div class="skillsBlock">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Category</span>
+                            <input type="text" class="form-control" id="skillsCategoryInput" name="uskillCat">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Skill set</span>
+                            <input type="text" class="form-control" id="skillSetInput" name="uskillSet">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Category</span>
+                            <input type="text" class="form-control" id="skillsCategoryInput" name="uskillCat">
+                        </div>
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Skill set</span>
+                            <input type="text" class="form-control" id="skillSetInput" name="uskillSet">
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-sm" id="addSkillsBtn">Add Skill Set</button>
+                </div>
+
+            </div>
+
+            <div class="formBlock col">
+                <button class="btn btn-warning m-1" style="width: 48%;" id="addExperienceBtn">Add Experience
+                    Section</button>
+
+                <button class="btn btn-warning m-1" style="width: 48%;" id="addProjectBtn">Add Projects
+                    Section</button>
+            </div>
+
+            <button type="submit" class="btn btn-lg btn-primary" style="width: 40%; margin:auto"
+                id="submitBtn">Submit</button>
+
+        </div>
+    </form>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2"
+    crossorigin="anonymous"></script>
