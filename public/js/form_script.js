@@ -187,84 +187,42 @@ document.getElementById('addProjectBtn').addEventListener('click',(e)=>{
     projectCount++;
 });
 
-
-
-
-
 document.getElementById('submitBtn').addEventListener('click',(e)=>{
     e.preventDefault();
-    let resume_obj = form_data_to_obj();
-    console.log(resume_obj);
+    e.stopPropagation();
+    add_template_options();
 });
 
-function form_data_to_obj(){
-    let formData = new FormData(document.getElementById('detailsForm'));
-    // const values = [...formData.entries()];
-    // console.log(values);
+function add_template_options(){
+    let html = 
+    `<div class="d-flex">
+        <label>
+            <input type="radio" name="resume_format" value="simple" checked>
+            <img src="https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHJlc3VtZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" height="400px">
+        </label>
+        
+        <label style="margin-left: 10px;">
+            <input type="radio" name="resume_format" value="two_column">
+            <img src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHJlc3VtZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" height="400px">
+        </label>
+        
+    </div>
+    <button class="btn btn-success mt-2" id="proceedBtn">Preview Resume</button>
+    <input type="submit" class="btn btn-secondary" style="align-self: center;" value="Continue">
+    `
+    let elem = document.createElement('div');
+    elem.className = 'd-flex flex-column';
+    elem.id = 'template-form';
+    elem.innerHTML = html;
+    elem.style = 'align-items:center; justify-contents:space-around;'
+    document.getElementById('template-options').appendChild(elem);
 
-    let resume_obj = {};
+    document.querySelector('#template-options').scrollIntoView({
+        behavior: 'smooth'
+    });
 
-    //Personal Block
-    let personalObj = {};
-    personalObj.name = formData.get('uname');
-    personalObj.place = formData.get('uplace');
-    personalObj.dob = formData.get('udob');
-    resume_obj.personal_details = personalObj;
-    console.log(personalObj);
-
-    //Contact Block
-    let contactObj = {};
-    contactObj.phone = formData.get('uphone');
-    contactObj.email = formData.get('umail');
-    contactObj.linkedin = formData.get('ulinkedin');
-    if(formData.has('uportTitle')){
-        contactObj.portfolioTitle = formData.getAll('uportTitle');
-        contactObj.portfolioLink = formData.getAll('uportLink');
-    }
-    resume_obj.contact = contactObj;
-    console.log(contactObj);
-
-    //Education Block
-    let educationObj = {};
-    educationObj.college = formData.getAll('ucollege');
-    educationObj.degree = formData.getAll('udegree');
-    educationObj.major = formData.getAll('umajor');
-    educationObj.score = formData.getAll('uscore');
-    educationObj.start_year = formData.getAll('ueduStart');
-    educationObj.end_year = formData.getAll('ueduEnd');
-    resume_obj.education = educationObj;
-    console.log(educationObj);
-
-    //Skills Block
-    let skillsObj = {};
-    skillsObj.category = formData.getAll('uskillCat');
-    skillsObj.skill_set = formData.getAll('uskillSet');
-    resume_obj.skills = skillsObj;
-    console.log(skillsObj);
-
-    //Experience Block
-    if(formData.has('ucompany')){
-        let expObj = {};
-        expObj.company = formData.getAll('ucompany');
-        expObj.role = formData.getAll('ucomRole');
-        expObj.start_year = formData.getAll('ucomStart');
-        expObj.end_year = formData.getAll('ucomEnd');
-        expObj.details = formData.getAll('ucomDetails');
-        resume_obj.experience = expObj;
-        console.log(expObj);
-    }
-
-    //Projects Block
-    if(formData.has('uprojectTitle')){
-        let projectObj = {};
-        projectObj.title= formData.getAll('uprojectTitle');
-        projectObj.tech_stack = formData.getAll('uprojectTech');
-        projectObj.start_year = formData.getAll('uprojectStart');
-        projectObj.end_year = formData.getAll('uprojectEnd');
-        projectObj.details = formData.getAll('uprojectDetails');
-        resume_obj.project = projectObj;
-        console.log(projectObj);
-    }
-
-    return resume_obj;
+    document.querySelector('#proceedBtn').addEventListener('click',(event)=>{
+        event.preventDefault();
+    });
+       
 }

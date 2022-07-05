@@ -1,0 +1,153 @@
+
+body{
+    /* background-color: #c8d8e4; */
+    background-color: black;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+}
+
+a:hover{
+    color: red;
+    cursor: pointer;
+}
+
+.container{
+    width:70%;
+    margin: auto;
+    font-family: sans-serif;
+    /* margin-top: 200px; */
+}
+
+h2{
+    font-family: 'Raleway', serif;
+    border-bottom: 2px solid saddlebrown;
+    font-size: 30px;
+    /* color: rgb(5, 161, 255); */
+}
+
+.color-1{
+    color: saddlebrown;
+}
+
+.color-2{
+    color: rgb(250, 168, 5);
+}
+
+.row-flex{
+    display: flex;
+    /* justify-content: space-between; */
+    flex-direction: row;
+    /* align-items: center; */
+}
+
+.col-flex{
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    align-items: center;
+}
+
+#header{ 
+    padding: 5px 20px;
+    font-size: larger;
+    background-color: #282828;
+    color: white;
+    border-bottom: 10px solid #0c0032;
+}
+
+.left-box{
+    /* align-self: flex-start; */
+    padding: 10px;
+}
+#photo{
+    margin-right: 10px;
+}
+#photo img{
+    border: 1px solid rgb(196, 240, 186);
+    border-radius: 50%;
+}
+
+#name{
+    font-family: 'Inter', sans-serif;
+    font-size: 40px;
+    padding-bottom: 5px;
+}
+
+.right-box{
+    font-size: 15px;
+    padding: 10px;
+}
+
+.list-none{
+    list-style: none;
+    padding-left: 10px;
+}
+
+.content{
+    padding: 5px;
+    /* background: #f2f2f2; */
+    /* background-color: #f8f9d2; */
+    background-color: white;
+    /*  */
+}
+
+.gradient-bg{
+    background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%);
+}
+
+.content-box{
+    border-bottom: 3px solid saddlebrown;
+    border-left: 3px solid saddlebrown;
+    border-radius: 2px;
+    margin-bottom: 10px;
+    padding: 0px 0px 5px 5px;
+}
+
+.content-item{
+    font-family: 'Inter', sans-serif;
+}
+
+.content-item h3{
+    font-family: 'Lato', serif;
+}
+
+.skills h4{
+    margin-bottom: 5px;
+    color: aqua;
+}
+
+.skills p{
+    margin: 0px;
+    font-family: 'calibri','sans-serif';
+    font-size: 18px;
+    font-style: italic;
+}
+
+.text-center{
+    text-align: center;
+}
+
+/* @media only screen and (max-width: 800px) {
+    .container{
+        width: 100%;
+        margin: 0;
+    }
+
+    #header{
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        
+    }
+
+    .left-box{
+        text-align: center;
+    }
+
+    #photo{
+        display: none;
+    }
+  } */

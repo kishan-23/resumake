@@ -13,13 +13,16 @@
     <div class="container d-flex">
         <div style="width: 60%; background-color:antiquewhite; height:800px">
             <h2>Your Saved Resume</h2>
+            <a class="btn btn-primary" href="/create_resume">Create New Resume</a>
         </div>
 
         <div style="width: 40%; background-color:cadetblue; height:800px">
             <h3>{{name}}</h3>
             <h4>{{email}}</h4>
+            <a href="/logout" class="btn btn-danger">Log Out</a>
         </div>
     </div>
-
+    <h2>Create new resume profile</h2>
+    {{>form}}
 </body>
 </html>

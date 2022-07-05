@@ -1,6 +1,6 @@
 <div class="container d-flex flex-column justify-content-center align-items-center mt-3">
     <h3>Enter your details</h3>
-    <form id="detailsForm">
+    <form action="/create_resume" method="post" id="detailsForm">
         <div class="border border-2 rounded p-2 bg-dark d-flex flex-column justify-content-center align-items-center">
             <div class="row row-cols-md-2">
                 <div class="formBlock col">
@@ -101,10 +101,14 @@
                     Section</button>
             </div>
 
-            <button type="submit" class="btn btn-lg btn-primary" style="width: 40%; margin:auto"
+            <button class="btn btn-lg btn-primary" style="width: 40%; margin:auto"
                 id="submitBtn">Submit</button>
 
         </div>
+        <div id="template-options" class="m-5">
+            <input type="submit" value="submit">
+        </div>
+        
     </form>
 </div>
 

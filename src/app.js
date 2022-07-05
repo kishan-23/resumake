@@ -11,8 +11,9 @@ require('dotenv').config({path: path.join(__dirname, '../.env')});
 
 const auth = require('./auth.js');
 const User = require('../models/users.js');
+const session = require('express-session');
 
-const port = 8888;
+const port = process.env.PORT || 8888;
 const static_path = path.join(__dirname, '../public');
 const partials_path = path.join(__dirname, '../views/partials');
 const views_path = path.join(__dirname, '../views');
@@ -23,6 +24,8 @@ app.use(express.static(static_path));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+// app.use(session({secret:process.env.SESSION_KEY}));
+
 
 //handlebar related
 app.set('view engine', 'hbs');
@@ -108,7 +111,8 @@ app.get('/dashboard',async (req,res)=>{
             // console.log(authorise);
             if(authorise.authorised){
                 let data  = await User.findOne({_id:authorise.id}).exec();
-                res.render('dashboard',{name:data.name, mail:data.email});
+                // console.log(data);
+                res.render('dashboard',{name:data.name, email:data.email});
             }
             else throw new Error(authorise.message);
         }
@@ -117,6 +121,37 @@ app.get('/dashboard',async (req,res)=>{
     }
     
 });
+
+app.get('/create_resume',(req,res)=>{
+    res.status(200).render('create_resume');
+});
+
+app.post('/create_resume',(req,res)=>{
+    let obj = {};
+    obj.name = req.body.uname;
+    obj.place = req.body.uplace;
+    obj.dob = req.body.udob;
+    obj.phone = req.body.uphone;
+    obj.email = req.body.umail;
+    obj.linkedin = req.body.ulinkedin;
+    obj.college = req.body.ucollege;
+    if('uportTitle' in req.body){
+        obj.portTitle = req.body.uportTitle;
+    }
+
+    console.log(req.body);
+    res.send(obj);
+
+});
+
+app.get('/resume',(req,res)=>{
+    res.render('resume/simple');
+});
+
+app.get('/logout',(req,res)=>{
+    res.clearCookie('jwt');
+    res.redirect('/');
+})
 
 
 //listen
