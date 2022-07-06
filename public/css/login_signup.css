@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css?family=Nunito:300');
+ body {
+	 margin: 0;
+	 padding-bottom: 20px;
+	 font-family: 'Nunito', sans-serif;
+	 color: white;
+	 background: #151515;
+}
+ .header {
+	 position: relative;
+	 text-align: center;
+   
+}
+header h1{
+  color:#b61818;
+}
+ form {
+	 margin: 0 auto;
+	 max-width: 23rem;
+	 overflow: auto;
+     display: flex;
+     flex-direction: column;
+     justify-content: center;
+     align-items: center;
+}
+ form > * + * {
+	 margin-top: 1rem;
+}
+ form > input {
+	 border: 0;
+	 border-bottom: 1px solid white;
+	 border-radius: 0;
+	 width: 100%;
+	 height: 2.5rem;
+	 padding: 0 0 0.25rem 0;
+	 font-size: 1rem;
+	 color: white;
+	 background: #151515;
+}
+ form > input:focus {
+	 outline: none;
+}
+ form > input::placeholder {
+	 color: white;
+}
+ form > button {
+	 margin-top: 2rem;
+	 border: 0;
+	 border-radius: 200px;
+	 width: 60%;
+	 padding: 0.85rem;
+	 font-size: 1rem;
+	 color: white;
+	 background: #b61818;
+}
+ form > button:focus {
+	 outline: none;
+}
+ form > p {
+	 text-align: center;
+	 color: white;
+}
+ /* .sign-up {
+	 display: none;
+} */
+ .opposite-btn1, .opposite-btn2 {
+	 cursor: pointer;
+}
