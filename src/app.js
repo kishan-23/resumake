@@ -6,12 +6,13 @@ const path = require('path');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
+const session = require('express-session');
 
 require('dotenv').config({path: path.join(__dirname, '../.env')});
 
 const auth = require('./auth.js');
 const User = require('../models/users.js');
-const session = require('express-session');
+const resutils = require('./resume_utils.js');
 
 const port = process.env.PORT || 8888;
 const static_path = path.join(__dirname, '../public');
@@ -24,7 +25,12 @@ app.use(express.static(static_path));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
-// app.use(session({secret:process.env.SESSION_KEY}));
+app.use(session({
+    secret: process.env.SESSION_KEY,
+    resave: false,
+    saveUninitialized: true,
+    // cookie: { secure: true }
+}));
 
 
 //handlebar related
@@ -127,32 +133,29 @@ app.get('/create_resume',(req,res)=>{
 });
 
 app.post('/create_resume',(req,res)=>{
-    let obj = {};
-    obj.name = req.body.uname;
-    obj.place = req.body.uplace;
-    obj.dob = req.body.udob;
-    obj.phone = req.body.uphone;
-    obj.email = req.body.umail;
-    obj.linkedin = req.body.ulinkedin;
-    obj.college = req.body.ucollege;
-    if('uportTitle' in req.body){
-        obj.portTitle = req.body.uportTitle;
-    }
-
-    console.log(req.body);
-    res.send(obj);
-
+    let obj = resutils(req.body);
+    req.session.resume = obj;
+    res.redirect('/resume');
 });
 
 app.get('/resume',(req,res)=>{
-    res.render('resume/simple');
+    res.render(`resume/${req.session.resume.resume_format}`,req.session.resume);
+    // res.send(req.session.resume);
 });
 
 app.get('/logout',(req,res)=>{
     res.clearCookie('jwt');
+    req.session.destroy((err)=>{
+        res.send(err.message);
+    })
     res.redirect('/');
 })
 
+
+// //something necessary
+// hbs.registerHelper('exist', function (obj) {
+//     return obj.length;
+// });
 
 //listen
 app.listen(port, () => {

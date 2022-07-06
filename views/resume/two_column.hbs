@@ -1,144 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/resume_style.css">
+    <link rel="stylesheet" href="css/resume_style.css" media="screen">
     <link rel="stylesheet" href="css/resume_print.css" media="print">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Bitter&family=Inter:wght@300&family=Libre+Franklin:wght@300&family=Open+Sans&family=PT+Serif&family=Source+Serif+Pro:ital,wght@1,300&display=swap" rel="stylesheet">  -->
-    <!-- <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Lato&family=PT+Sans:wght@700&display=swap" rel="stylesheet"> -->
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Lato&family=PT+Sans:wght@700&family=Raleway:wght@700&display=swap"
-        rel="stylesheet">
-    <title>Two Column Resume</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300&family=Lato&family=PT+Sans:wght@700&family=Raleway:wght@700&display=swap" rel="stylesheet">
+    <title>{{name}}</title>
 </head>
-
 <body>
     <div class="container">
 
         <div id="header" class="col-flex" style="justify-content: space-around;">
-            <div id="name" style="font-size: 50px;">Kishan Verma</div>
-            <div id="bio">Student at Motilal Nehru National Institute of technology</div>
+            <div id="name" style="font-size: 50px;">{{name}}</div>
+            <div id="bio">{{bio}}</div>
         </div>
 
         <div class="content">
             <div class="row-flex" style="justify-content: space-between;" id="left-box">
 
                 <div style="width:62%;">
-
+                    
                     <div class="content-box">
                         <h2 class="color-1">EDUCATION</h2>
+                        {{#each education}}
                         <div class="content-item">
-                            <h3>Motilal Nehru National Institute of Technology Allahabad, Prayagraj</h3>
-                            <p>Bachelor of Technology<br>
-                                <span style="font-family: 'calibri' ;"><i>Computer Science & Engineering</i></span>
+                            <h3>{{college}}</h3>
+                            <p>{{degree}}<br>
+                                <span style="font-family: 'calibri' ;"><i>{{major}} </i> <small>{{start}}-{{end}}</small> </span>
                             </p>
-                            <span>CPI: 8.47(Till 4<sup>th</sup> Semester)</span>
+                            <span>{{score}}</span>
                         </div>
-                        <div class="content-item">
-                            <h3>Central Academy, Gorakhpur</h3>
-                            <p>CBSE Class 12th<br>
-                                <span style="font-family: 'calibri' ;"><i>PCM</i></span>
-                            </p>
-                            <span> Score: 89.4%</span>
-                        </div>
+                        {{/each}}
                         
                     </div>
-                    <div class="content-box">
-                        <div class="content-item">
-                            <h2 class="color-1">PROJECTS</h2>
-                            <h3> <a style="color:darkslategray" href="https://github.com/kishan-23/SmartShare">Smart
-                                    Share</a></h3>
-                            <p>
-                                Key-Based file sharing desktop app.
-                                User can Sign in or Sign Up, can set maximum no. of downloads & time up to which
-                                file is available on server.
-                                Core working is implemented in JAVA, Socket programming over TCP is used for
-                                server-client network.
-                                Frontend (GUI) is prepared using JavaFX and MySQL is used for database.
-                            </p>
-                            <h3> <a href="https://github.com/kishan-23/SmartShare">Smart Share</a></h3>
-                            <p>
-                                Key-Based file sharing desktop app.
-                                User can Sign in or Sign Up, can set maximum no. of downloads & time up to which
-                                file is available on server.
-                                Core working is implemented in JAVA, Socket programming over TCP is used for
-                                server-client network.
-                                Frontend (GUI) is prepared using JavaFX and MySQL is used for database.
-                            </p>
-                            <h3> <a style="color:darkslategray" href="https://github.com/kishan-23/SmartShare">Smart
-                                    Share</a></h3>
-                            <p>
-                                Key-Based file sharing desktop app.
-                                User can Sign in or Sign Up, can set maximum no. of downloads & time up to which
-                                file is available on server.
-                                Core working is implemented in JAVA, Socket programming over TCP is used for
-                                server-client network.
-                                Frontend (GUI) is prepared using JavaFX and MySQL is used for database.
-                            </p>
-                            <h3> <a href="https://github.com/kishan-23/SmartShare">Smart Share</a></h3>
-                            <p>
-                                Key-Based file sharing desktop app.
-                                User can Sign in or Sign Up, can set maximum no. of downloads & time up to which
-                                file is available on server.
-                                Core working is implemented in JAVA, Socket programming over TCP is used for
-                                server-client network.
-                                Frontend (GUI) is prepared using JavaFX and MySQL is used for database.
-                            </p>
-                        </div>
 
+                    {{#if has_project}}
+                    <div class="content-box">
+                        <h2 class="color-1">PROJECTS</h2>
+                        {{#each projects}}
+                        <div class="content-item">   
+                            <h3>{{title}}</h3>
+                            <span><i>{{tech_stack}} </i> <small>{{start}}-{{end}}</small></span><br>
+                            <p>
+                            {{details}}
+                            </p> 
+                        </div>
+                        {{/each}}
                     </div>
+                    {{/if}}
+
+                    {{#if has_experience}}
+                    <div class="content-box">
+                        <h2 class="color-1">Experience</h2>
+                        {{#each experience}}
+                        <div class="content-item">   
+                            <h3>{{role}}</h3>
+                            <span><i>{{company}} </i> <small>{{start}}-{{end}}</small></span><br>
+                            <p>
+                            {{details}}
+                            </p> 
+                        </div>
+                        {{/each}}
+                    </div>
+                    {{/if}}
+
                 </div>
 
-                <div style="width:35%; height:925px; background-color: rgb(59, 46, 46); color: white; padding: 10px;">
+                <div style="width:35%; height:900px; background-color: rgb(59, 46, 46); color: white; padding: 10px;">
 
                     <div class="content-item">
                         <h2 class="text-center color-2">Contact</h2>
                         <ul class="list-none">
                             <li><span class="material-icons">call</span> <span style="padding-bottom: 1px;">+91
-                                    8173865691</span></li>
-                            <li><span class="material-icons">email</span><a href="mailto:kishanverma2312@gmail.com">
-                                    kishanverma2312@gmail.com</a></li>
-                            <li><span class="material-icons">link</span><a href="www.linkedin.com/in/kishan-23">
-                                    Linkedin</a></li>
-                            <li><i class="material-icons">home</i> Chauri Chaura, Gorakhpur, Uttar Pradesh</li>
+                                    {{phone}}</span></li>
+                            <li><span class="material-icons">email</span><a href="mailto:{{email}}">
+                                    {{email}}</a></li>
+                            <li><span class="material-icons">link</span>Linkedin: <a href="{{linkedin}}">
+                                    {{linkedin}}</a></li>
+                            
+                            {{#each portfolio}}
+                            <li><span class="material-icons">link</span>{{title}}: <a href="{{link}}">
+                                    {{link}}</a></li>
+                            {{/each}}
+
+                            <li><i class="material-icons">home</i> {{place}}</li>
                         </ul>
                     </div>
 
                     <div class="content-item text-center" style="margin-top: 40px;">
                         <h2 class="color-2">TECHNICAL SKILLS</h2>
+                        {{#each skills}}
                         <div class="skills">
-                            <h4>Programming Languages:</h4>
-                            <p class="skillset"> C, C++, Java, Python(Basic).</p>
+                            <h4>{{category}}</h4>
+                            <p class="skillset"> {{skill_set}}</p>
                         </div>
-                        <div class="skills">
-                            <h4>Programming Languages:</h4>
-                            <p class="skillset"> C, C++, Java, Python(Basic), Javascript, Ruby, Scala, C#, Dart.</p>
-                        </div>
-                        <div class="skills">
-                            <h4>Programming Languages:</h4>
-                            <p class="skillset"> C, C++, Java, Python(Basic).</p>
-                        </div>
-                        <div class="skills">
-                            <h4>Programming Languages:</h4>
-                            <p class="skillset"> C, C++, Java, Python(Basic).</p>
-                        </div>
-                        <div class="skills">
-                            <h4>Programming Languages:</h4>
-                            <p class="skillset"> C, C++, Java, Python(Basic).</p>
-                        </div>
-                        
+                        {{/each}}
                     </div>
 
                 </div>
             </div>
         </div>
+
+        <div class="no-print">
+            <button id="printBtn">Print</button>
+            <button id="saveBtn">Save</button>
+        </div>
+
     </div>
+
+    <script>
+        document.getElementById('printBtn').addEventListener('click',(e)=>{
+            window.print();
+        })
+    </script>
 </body>
 
 </html>
