@@ -7,7 +7,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cookieParser = require("cookie-parser");
 const session = require('express-session');
-var flash = require('req-flash');
+// var flash = require('req-flash');
 
 require('dotenv').config({path: path.join(__dirname, '../.env')});
 
@@ -30,9 +30,8 @@ app.use(session({
     secret: process.env.SESSION_KEY,
     resave: false,
     saveUninitialized: true,
-    // cookie: { secure: true }
 }));
-app.use(flash());
+// app.use(flash());
 
 //handlebar related
 app.set('view engine', 'hbs');
@@ -67,7 +66,6 @@ app.post('/login', async (req, res) => {
 
 
     } catch (error) {
-        // console.log(error);
         res.status(400).send(error.message);
     }
 });
@@ -147,11 +145,8 @@ app.get('/preview_resume',(req,res)=>{
 
 app.get('/preview_resume/:id',async (req,res)=>{
     try {
-        // console.log('here');
         let result = await Resume.findOne({_id:req.params.id}).select('data').exec();
-        // console.log(result);
         let resumeData = JSON.parse(result.data);
-        // console.log(resumeData.resume_format);
         res.render(`resume/${resumeData.resume_format}`,resumeData);
     } catch (error) {
         res.status(400).send(error.message);
@@ -161,43 +156,44 @@ app.get('/preview_resume/:id',async (req,res)=>{
 app.get('/logout',(req,res)=>{
     res.clearCookie('jwt');
     req.session.destroy((err)=>{
-        res.send(err.message);
+        res.send(err);
     })
     res.redirect('/');
 })
 
 app.post('/save_resume',async (req,res)=>{
-    let resume_model = new Resume({
-        name: req.body.name,
-        user_mail: req.session.user_mail,
-        data: JSON.stringify(req.session.resume),
-    });
+    if('user_mail' in req.session){
+        let resume_model = new Resume({
+            name: req.body.name,
+            user_mail: req.session.user_mail,
+            data: JSON.stringify(req.session.resume),
+        });
 
-    try {
-        let result = await resume_model.save();
-        // res.send('Succesfully saved');
-        req.flash('message','succesfully saved');
-        res.redirect('/dashboard');
-    } catch (error) {
-        res.status(400).send(error.message);
+        try {
+            let result = await resume_model.save();
+            // req.flash('successMessage','succesfully saved');
+            res.redirect('/dashboard');
+        } catch (error) {
+            res.status(400).send(error.message);
+        }
+    }
+    else{
+        res.send('Sorry, You are not logged in! However, you can print your resume');
     }
 });
+
 
 app.get('/delete/:id',async(req,res)=>{
     try {
         let result = await Resume.deleteOne({_id:req.params.id}).exec();
-        // console.log(result);
-        req.flash('message','successfully deleted');
+        // req.flash('message','successfully deleted');
         res.redirect('/dashboard');
     } catch (error) {
-        req.flash('message',error.message);
+        // req.flash('message',error.message);
+        req.send(error.message);
     }
 })
 
-// //something necessary
-// hbs.registerHelper('exist', function (obj) {
-//     return obj.length;
-// });
 
 //listen
 app.listen(port, () => {

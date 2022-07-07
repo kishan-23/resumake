@@ -19,7 +19,6 @@ document.getElementById('addPortfolioBtn').addEventListener('click',(e)=>{
     portfolioCount++;
 
     e.target.parentElement.insertBefore(elem,e.target);
-    // console.log(e.target.parentElement);
 });
 
 document.getElementById('addEducationBtn').addEventListener('click',(e)=>{
@@ -54,7 +53,6 @@ document.getElementById('addEducationBtn').addEventListener('click',(e)=>{
     educationCount++;
 
     e.target.parentElement.insertBefore(elem,e.target);
-    // console.log(e.target.parentElement);
 });
 
 document.getElementById('addSkillsBtn').addEventListener('click',(e)=>{
@@ -74,7 +72,6 @@ document.getElementById('addSkillsBtn').addEventListener('click',(e)=>{
     skillsCount++;
 
     e.target.parentElement.insertBefore(elem,e.target);
-    // console.log(e.target.parentElement);
 });
 
 document.getElementById('addExperienceBtn').addEventListener('click',(e)=>{
@@ -198,16 +195,15 @@ function add_template_options(){
     `<div class="d-flex">
         <label>
             <input type="radio" name="resume_format" value="simple" checked>
-            <img src="https://images.unsplash.com/photo-1491975474562-1f4e30bc9468?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDR8fHJlc3VtZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" height="400px">
+            <img src="/Images/simple_resume.png" height="400px">
         </label>
         
         <label style="margin-left: 10px;">
             <input type="radio" name="resume_format" value="two_column">
-            <img src="https://images.unsplash.com/reserve/LJIZlzHgQ7WPSh5KVTCB_Typewriter.jpg?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MjV8fHJlc3VtZXxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=600&q=60" height="400px">
+            <img src="/Images/two_col_resume.png" height="400px">
         </label>
         
     </div>
-    <button class="btn btn-success mt-2" id="proceedBtn">Preview Resume</button>
     <input type="submit" class="btn btn-secondary" style="align-self: center;" value="Continue">
     `
     let elem = document.createElement('div');

@@ -34,9 +34,7 @@ a{
 
 .row-flex{
     display: flex;
-    /* justify-content: space-between; */
     flex-direction: row;
-    /* align-items: center; */
 }
 
 .col-flex{
@@ -53,14 +51,12 @@ h2{
 }
 #header{
     padding: 5px 20px;
-    /* font-size: larger; */
     background-color: #282828;
     color: white;
     border-bottom: 10px solid #0c0032;
 }
 
 .left-box{
-    /* align-self: flex-start; */
     padding: 10px;
 }
 #photo{
@@ -90,7 +86,6 @@ h2{
 .content{
     padding: 2px;
     background-color: white;
-    /*background-image: linear-gradient(315deg, #f8f9d2 0%, #e8dbfc 74%); */
 }
 
 .gradient-bg{
