@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/resume_style.css" media="screen">
-    <link rel="stylesheet" href="css/resume_print.css" media="print">
+    <link rel="stylesheet" href="/css/resume_style.css" media="screen">
+    <link rel="stylesheet" href="/css/resume_print.css" media="print">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -91,7 +91,12 @@
         </div>
         <div class="no-print">
             <button id="printBtn">Print</button>
-            <button id="saveBtn">Save</button>
+            <form action="/save_resume" method="post">
+                <label for="resname">Enter resume name</label>
+                <input type="text" id="resname" name="name">
+                <input type="submit" class="btn btn-success" value="Save">
+            </form>
+            
         </div>
     </div>
 

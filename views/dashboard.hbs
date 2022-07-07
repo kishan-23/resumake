@@ -1,28 +1,121 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
+  <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ResuMaker</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/mystyle.css">
-</head>
-<body style="margin-top: 80px;">
+    <title>Dashboard-Resumake</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+  </head>
+  <body>
     {{>navbar}}
-    <div class="container d-flex">
-        <div style="width: 60%; background-color:antiquewhite; height:800px">
-            <h2>Your Saved Resume</h2>
-            <a class="btn btn-primary" href="/create_resume">Create New Resume</a>
-        </div>
+    <div class="container">
+      <img src="/Images/Resume.jpg" width="843px" style="margin-top:75px;">
+      <div class="left">
 
-        <div style="width: 40%; background-color:cadetblue; height:800px">
-            <h3>{{name}}</h3>
-            <h4>{{email}}</h4>
-            <a href="/logout" class="btn btn-danger">Log Out</a>
+        <h3 class="text-center mb-3">Your Saved Resumes</h3>
+
+        <table class="table table-hover table-primary">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Created</th>
+              <th scope="col">Options</th>
+            </tr>
+          </thead>
+          
+          <tbody>
+            {{#each resumes}}
+            <tr>
+              <th scope="row">{{@index}}</th>
+              <td>{{name}}</td>
+              <td>{{date}}</td>
+              <td><a href="/preview_resume/{{_id}}" class="table-a">View</a> <a href="/delete/{{_id}}" class="table-a">Delete</a></td>
+            </tr>
+            {{/each}}
+          </tbody>
+        </table>
+
+      </div>
+      <div class="right">
+        <div id="profile" class="d-flex flex-column align-items-center p-3">
+          <img src="/Images/user.png" height="150px" width="150px">
+          <h2>{{uname}}</h2>
+          <h5 style="font-family: 'consolas';">{{uemail}}</h5>
         </div>
+        <a href="/create_resume" id="newResumeBtn">Create new resume</a>
+        <a href="/logout" class="btn btn-danger btn-lg">LOG OUT</a>
+        <div>
+          <button class="btn btn-primary">Feedback</button>
+          <button class="btn btn-primary">Contact us</button>
+        </div>
+      </div>
     </div>
-    <h2>Create new resume profile</h2>
-    {{>form}}
-</body>
+    <style type="text/css">
+      body{
+        background: #f5cac2;
+      }
+      .left{
+        /*background: antiquewhite;*/
+        background: #fae5df;
+        width: 65%;
+        padding: 80px;
+        padding-bottom: 100px;
+      }
+      .right{
+        background: #141850;
+        width: 28%;
+        height: 650px;
+        position: fixed;
+        top: 75px;
+        left: 1000px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        /*align-content: center;*/
+        justify-content: space-around;
+        /*justify-items: center;*/
+      }
+
+      #newResumeBtn{
+        display: block;
+        padding: 3px;
+        color: #5aecf3;
+        text-decoration: none;
+        font-size: 25px;
+        font-family: 'calibri';
+        border-bottom: 2px solid #5aecf3;
+        transition-duration: 0.5s;
+        transition-timing-function: linear;
+      }
+
+      #newResumeBtn:hover{
+        color: red;
+        cursor: pointer;
+        /*padding: 5px;*/
+        border-bottom: 2px solid red;
+      }
+
+      #profile{
+        background: #ff0084;
+        color: white;
+        height: 275px;
+        width: 85%;
+        margin: auto;
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+
+      .table-a{
+        text-decoration: none;
+        color: black;
+        padding: 3px;
+      }
+      .table-a{
+        cursor: pointer;
+        color: red;
+      }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+  </body>
 </html>
